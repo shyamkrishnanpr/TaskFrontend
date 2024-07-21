@@ -1,0 +1,33 @@
+.task-item {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #eeeeeefa;
+}
+
+.task-item.dragging {
+  opacity: 0.5;
+}
+
+.task-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.view-button {
+  margin-right: 10px;
+  width: 60px;
+  background-color: rgb(98, 98, 202);
+}
+.edit-button {
+  margin-right: 10px;
+  width: 60px;
+
+  background-color: rgb(83, 156, 83);
+ 
+}
+.delete-button {
+  background-color: rgb(139, 42, 42);
+  width: 60px;
+}
