@@ -11,6 +11,7 @@ const TaskColumn = ({
   onTaskMove,
   onTaskDelete,
   onViewTask,
+  onEditTask,
 }) => {
   const [{ isOver }, drop] = useDrop({
     accept: "TASK",
@@ -24,7 +25,13 @@ const TaskColumn = ({
     <div ref={drop} className={`task-column ${isOver ? "highlight" : ""}`}>
       <h2>{status.charAt(0).toUpperCase() + status.slice(1)}</h2>
       {tasks.map((task) => (
-        <TaskItem key={task._id} task={task} onDelete={onTaskDelete} onView={onViewTask} />
+        <TaskItem
+          key={task._id}
+          task={task}
+          onDelete={onTaskDelete}
+          onView={onViewTask}
+          onEdit={onEditTask}
+        />
       ))}
     </div>
   );

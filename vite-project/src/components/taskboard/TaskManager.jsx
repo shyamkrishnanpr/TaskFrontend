@@ -5,6 +5,7 @@ import TaskForm from "./TaskForm";
 import TaskColumn from "./TaskColumn";
 import TaskModal from "./TaskModal";
 import AddTaskModal from "./AddTaskModal";
+import EditTaskModal from "./EditTaskModal";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import Navbar from "../navbar/Navbar";
@@ -22,6 +23,8 @@ const TaskManager = () => {
   const [error, setError] = useState(null);
   const [selectedTask, setSelectedTask] = useState(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editTaskId, setEditTaskId] = useState(null);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -68,6 +71,19 @@ const TaskManager = () => {
     }
   };
 
+  const handleEditTask = async (taskId, updatedTask) => {
+    try {
+      const editedTask = await updateTask(taskId, updatedTask);
+      const updatedTasks = tasks.map((task) =>
+        task._id === taskId ? editedTask : task
+      );
+      setTasks(updatedTasks);
+    } catch (error) {
+      console.error("Error editing task:", error);
+      setError("Failed to edit task.");
+    }
+  };
+
   const handleViewTask = async (taskId) => {
     const task = tasks.find((task) => task._id == taskId);
     setSelectedTask(task);
@@ -75,6 +91,16 @@ const TaskManager = () => {
 
   const handleCloseModal = () => {
     setSelectedTask(null);
+  };
+
+  const handleEdit = (taskId) => {
+    setEditTaskId(taskId);
+    setIsEditModalOpen(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setIsEditModalOpen(false);
+    setEditTaskId(null);
   };
 
   if (loading) {
@@ -104,6 +130,7 @@ const TaskManager = () => {
               onTaskMove={handleTaskMove}
               onTaskDelete={handleTaskDelete}
               onViewTask={handleViewTask}
+              onEditTask={handleEdit}
             />
             <TaskColumn
               status="in-progress"
@@ -111,6 +138,7 @@ const TaskManager = () => {
               onTaskMove={handleTaskMove}
               onTaskDelete={handleTaskDelete}
               onViewTask={handleViewTask}
+              onEditTask={handleEdit}
             />
             <TaskColumn
               status="done"
@@ -118,6 +146,7 @@ const TaskManager = () => {
               onTaskMove={handleTaskMove}
               onTaskDelete={handleTaskDelete}
               onViewTask={handleViewTask}
+              onEditTask={handleEdit}
             />
           </div>
         </div>
@@ -127,6 +156,13 @@ const TaskManager = () => {
         <AddTaskModal
           onClose={() => setIsAddModalOpen(false)}
           onAddTask={handleAddTask}
+        />
+      )}
+      {isEditModalOpen && (
+        <EditTaskModal
+          task={tasks.find((task) => task._id === editTaskId)}
+          onClose={handleCloseEditModal}
+          onEditTask={handleEditTask}
         />
       )}
     </>

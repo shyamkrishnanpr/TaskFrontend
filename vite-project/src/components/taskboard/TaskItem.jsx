@@ -4,7 +4,7 @@ import React from "react";
 import { useDrag } from "react-dnd";
 import "./TaskItem.css";
 
-const TaskItem = ({ task, onDelete, onView }) => {
+const TaskItem = ({ task, onDelete, onView, onEdit }) => {
   const [{ isDragging }, drag] = useDrag({
     type: "TASK",
     item: { _id: task._id },
@@ -14,7 +14,7 @@ const TaskItem = ({ task, onDelete, onView }) => {
   });
 
   const handleEdit = () => {
-    alert(`Edit task ${task.title}`);
+    onEdit(task._id);
   };
 
   const handleDelete = () => {
