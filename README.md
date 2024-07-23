@@ -15,10 +15,7 @@ This is the frontend for the full stack project.
 
 - React
 - Vite
-- Redux Toolkit
-- RTK Query
-- TypeScript
-- Material UI
+- context api
 - React Router DOM
 
 ## Deployment Instructions:
