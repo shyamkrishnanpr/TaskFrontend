@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./TaskModal.css";
+
+import "./EditModal.css";
 
 const EditTaskModal = ({ task, onClose, onEditTask }) => {
   const [formData, setFormData] = useState({
@@ -47,11 +48,8 @@ const EditTaskModal = ({ task, onClose, onEditTask }) => {
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <button className="close-button" onClick={onClose}>
-          ×
-        </button>
-        <h2>Edit Task</h2>
         <form onSubmit={handleSubmit}>
+          <h2>Edit Task</h2>
           <div>
             <label>Title</label>
             <input
@@ -74,6 +72,9 @@ const EditTaskModal = ({ task, onClose, onEditTask }) => {
             )}
           </div>
           <button type="submit">Save</button>
+          <button className="close-button" onClick={onClose}>
+            Close
+          </button>
         </form>
       </div>
     </div>

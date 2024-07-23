@@ -8,8 +8,10 @@ const TaskModal = ({ task, onClose }) => {
     <div className="modal-overlay">
       <div className="modal-content">
         <h2>{task.title}</h2>
-        <p>{task.description}</p>
-        <p>Created At: {task.createdAt}</p>
+        <h3>Description : {task.description}</h3>
+        <h3>
+          Created At{" : "} {new Date(task.createdAt).toDateString()}
+        </h3>
         <button onClick={onClose}>Close</button>
       </div>
     </div>

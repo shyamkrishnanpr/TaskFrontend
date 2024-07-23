@@ -3,7 +3,7 @@
 import React from "react";
 import { useDrop } from "react-dnd";
 import TaskItem from "./TaskItem";
-import "./TaskColumn.css";
+// import "./TaskColumn.css";
 
 const TaskColumn = ({
   status,
@@ -23,7 +23,10 @@ const TaskColumn = ({
 
   return (
     <div ref={drop} className={`task-column ${isOver ? "highlight" : ""}`}>
-      <h2>{status.charAt(0).toUpperCase() + status.slice(1)}</h2>
+      <div style={{ backgroundColor: "gray", color: "#fff" }}>
+        <h2>{status.charAt(0).toUpperCase() + status.slice(1)}</h2>
+      </div>
+
       {tasks.map((task) => (
         <TaskItem
           key={task._id}

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./signup.css";
 import Navbar from "../navbar/Navbar";
 import { useAuth } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import GoogleAuthButton from "./GoogleLoginButton";
 
 const SignUp = () => {
   const { signUp } = useAuth();
@@ -51,6 +52,14 @@ const SignUp = () => {
     } else {
       setErrors({ apierr: "Server error. Please try again later." });
     }
+  };
+
+  const handleGoogleLoginSuccess = (credentialResponse) => {
+    googleLogin(credentialResponse);
+  };
+
+  const handleGoogleLoginFailure = (error) => {
+    console.error("Google Login Failed", error);
   };
 
   return (
@@ -110,6 +119,12 @@ const SignUp = () => {
           {errors.apierr && <p>{errors.apierr}</p>}
         </div>
         <button type="submit">Sign Up</button>
+
+        <Link to="/login"> Already have account? login here..</Link>
+        {/* <GoogleAuthButton
+          onSuccess={handleGoogleLoginSuccess}
+          onFailure={handleGoogleLoginFailure}
+        /> */}
       </form>
     </>
   );

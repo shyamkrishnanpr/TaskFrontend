@@ -27,9 +27,19 @@ const TaskItem = ({ task, onDelete, onView, onEdit }) => {
 
   return (
     <div ref={drag} className={`task-item ${isDragging ? "dragging" : ""}`}>
-      <h3>{task.title}</h3>
-      <p>{task.description}</p>
-      <p>{task.createdAt}</p>
+      <div className="task-content">
+        <h3>{task.title}</h3>
+        <h5>
+          {"Description"}
+          {" : "}
+          {task.description}
+        </h5>
+        <h5>
+          {"Created At"}
+          {" : "}
+          {new Date(task.createdAt).toDateString()}
+        </h5>
+      </div>
       <div className="task-actions">
         <button className="view-button" onClick={handleView}>
           View
