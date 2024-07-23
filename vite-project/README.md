@@ -16,7 +16,7 @@ Open a terminal and run the following command to clone this project:
 git clone https://github.com/shyamkrishnanpr/TaskFrontend.git
 
 Step 2: Navigate to the Project Directory
-Navigate to the AstroFrontEnd directory within the cloned project using the command:
+Navigate to the directory within the cloned project using the command:
 
 cd vite-project
 
